@@ -17,7 +17,7 @@ p {
   margin-bottom: 15px;
 }
 
-#container2 {
+#tabCTN {
   overflow: hidden;
   display: inline-block;
   margin-top: 10px;
@@ -35,19 +35,7 @@ p {
   text-decoration: none;
 }
 
-.tabs{
-  float: left;
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: 2px;
-  color: #CED5D7;
-  margin-left: 15px;
-
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.tab1{
+.tab0{
   float: left;
   font-weight: 700;
   font-size: 20px;
@@ -57,6 +45,10 @@ p {
 
   text-decoration: none;
   text-transform: uppercase;
+}
+
+tab0.tab{
+  margin-left: 15px;
 }
 
 #selectedtab{
