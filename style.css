@@ -6,6 +6,12 @@ body {
 }
 
 p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #F8F8F4;
+
   text-indent: 3em;
   line-height: 1.5;
 }
@@ -23,56 +29,39 @@ p {
   margin-top: 10px;
 }
 
-.title{
-  display: inline-block;
+.tab,.selectedtab,.title{
   float: left;
-  font-weight: 800;
-  font-size: 48px;
+  font-weight: 700;
+  font-size: 20px;
   letter-spacing: 2px;
-  color: #F8F8F4;
   margin-right: 15px;
-
   text-decoration: none;
   text-transform: uppercase;
 }
 
 .tab{
-  float: left;
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: 2px;
-  color: #CED5D7;
-  margin-left: 15px;
-
-  text-decoration: none;
-  text-transform: uppercase;
+  color: #abb1b3;
 }
 
-#tab0.tab{
-  margin-left: 0px !important;
+.title{
+  display: inline-block;
+  font-weight: 800 !important;
+  font-size: 48px !important;
+  color: #F8F8F4;
 }
 
 #selectedtab{
   color: #F8F8F4;
 }
 
-
-p {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  letter-spacing: 1px;
-  color: #F8F8F4;
-}
-
 @media only screen and (max-width: 750px) {
 
-   body { 
-      font-size: 1em; 
-   }
+  body { 
+    font-size: 1em !important; 
+  }
 
-   .title { 
-      font-size: 6.66vw; 
-   }
+  .title{
+    font-size: 6.66vw !important;
+  }
 
 }

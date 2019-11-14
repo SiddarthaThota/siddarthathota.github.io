@@ -11,8 +11,16 @@ class Tab {
 		var tablink = document.createElement('a');
 		tablink.innerHTML = this.name;
 		tablink.href = this.link;
-		tablink.className = this.className;
 		tablink.id = this.id;
+		var sPage = window.location.pathname;
+		var sPath = sPage.substring(sPage.lastIndexOf('/')+1,sPage.length);
+		tablink.className = this.className;
+		if(this.link == sPath) { 
+			tablink.id = "selectedtab";
+		}
+		else {
+			tablink.id = this.id;
+		}
 		return tablink;
 	}
 }
@@ -27,9 +35,9 @@ function appendTabs(tablist) { // return div containing elements generated from 
 	return container;
 }
 
-var sidsTablist =	[new Tab("Home","index.html","tab","tab0"),
+var sidsTablist =	[new Tab("Home","index.html","tab",null),
 					 new Tab("Resume","resume.html","tab",null),
-					 new Tab("Portfolio","portfolio.html","tab",null),];
+					 new Tab("Portfolio ▾","portfolio.html","tab",null),];
 
 var header = document.createElement('div'); // create header
 header.id = "header";
