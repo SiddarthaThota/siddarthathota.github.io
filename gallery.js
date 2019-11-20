@@ -1,27 +1,34 @@
-var sidsDropdownlist =
-	[new Tab("Project0","project0.html","dropdowntext",null),
-	 new Tab("Project1","project1.html","dropdowntext",null),
-	 new Tab("Menu","portfolio.html","dropdowntext menu",null),];
-
-function createDroptab(Tab){
-	var siddiv = document.createElement('div');
-	siddiv.className = "dropdown";
-	siddiv.appendChild(Tab.createA());
-	return siddiv;
-}
-
-function createDropdown(dropdownlist){
-	var container = document.createElement("div");
-	container.id = "dropdownCTN";
-	for (var i = 0; i < (dropdownlist.length); i++) {
-		container.appendChild(createDroptab(dropdownlist[i]));
+function justifyGallery(gallery,maximgs = 2) {
+	console.log("justifyGallery is running");
+	var galleryList = gallery.childen.getElementsByTagName("img");
+	imgidx = 0;
+	for (let i = 0; i < Math.ceil(galleryList.length/maximgs); i++) {
+		docW = document.body.clientWidth; // width of client's page in pixels
+		initTotalW = 0;
+		for (let j = imgidx; j < imgidx+maximgs; j++){ // j also functions as imgidx
+			initTotalW += galleryList[j].clientWidth;
+			initTotalW += 10; // margin
+		}
+		resizeRate = docW/initTotalW;
+		for (let j = imgidx; j < imgidx+maximgs; j++){ // j also functions as imgidx
+			galleryList[j].clientWidth *= resizeRate;
+		}
 	}
-	return container;
+	return galleryList;
 }
 
+var galleryElements = document.body.getElementsByClassName("gallery");
+for (var i = 0; i < galleryElements.length; i++){
+	var newgallery = justifyGallery(galleryElements[i],3);
+	// console.log(newgallery[0].clientWidth);
 
-var dropdown = createDropdown(sidsDropdownlist);
+	while (galleryElements[i].firstChild) { // remove all child elements
+		document.body.getElementsByClassName("gallery")[i].removeChild(galleryElements[i].firstChild);
+	}
 
+	for (var j = 0; j < newgallery.length; j++) { // add new child elements
+		document.body.getElementsByClassName("gallery")[i].appendChild(newgallery[j]);
+	}
+	console.log(document.body.getElementsByClassName("gallery")[1].children);
 
-document.body.appendChild(dropdown);
-//document.body.appendChild(sidsDropdownlist); // append dropdown to body
+}

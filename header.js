@@ -1,4 +1,5 @@
-// This script generates the header for the website. It should be placed as the first child of the body in your html.
+// This script generates the header for the website.
+// It should be placed as the first child of the body in your html.
 
 class Tab {
 	constructor(name, link, className, id) {

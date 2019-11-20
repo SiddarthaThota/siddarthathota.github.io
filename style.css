@@ -16,6 +16,11 @@ p {
   line-height: 1.5;
 }
 
+#content {
+  width: 100%;
+
+}
+
 #header {
   overflow: hidden;
   margin-bottom: 15px;
