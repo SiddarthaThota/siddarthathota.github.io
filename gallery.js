@@ -5,26 +5,24 @@ function justifyGallery(gallery,maximgs = 2) {
 	for (let i = 0; i < Math.ceil(galleryList.length/maximgs); i++) {
 		docW = document.body.clientWidth; // width of client's page in pixels
 		initTotalW = 0;
-		for (let j = imgidx; j < imgidx+maximgs; j++){ // j also functions as imgidx
+		for (let j = imgidx; j < Math.min(imgidx+maximgs,galleryList.length); j++){ // j also functions as imgidx
 			initTotalW += galleryList[j].clientWidth;
-			initTotalW += 10; // margin
+			initTotalW += 10; // margin	
 		}
 		resizeRate = docW/initTotalW;
-		for (let j = imgidx; j < imgidx+maximgs; j++){ // j also functions as imgidx
-			galleryList[j].style.maxWidth = resizeRate;
-			console.log(galleryList[j].style.naturalWidth);
-			// galleryList[j].clientWidth *= resizeRate;
+		for (let j = imgidx; j < Math.min(imgidx+maximgs,galleryList.length); j++){ // j also functions as imgidx
+			console.log(galleryList[j].clientWidth);
+			galleryList[j].clientWidth *= resizeRate;
 		}
-		imgidx += 3;
+		imgidx += maximgs + 1;
 	}
-	return galleryList;
+	return galleryList
 }
 
 var galleryElements = document.body.getElementsByClassName("gallery");
-for (var i = 0; i < galleryElements.length; i++){
+for (var i = 0; i < galleryElements.length; i++) {
 	var newgallery = justifyGallery(galleryElements[i],3);
 	// console.log(newgallery[0].clientWidth);
-
 	while (galleryElements[i].firstChild) { // remove all child elements
 		document.body.getElementsByClassName("gallery")[i].removeChild(galleryElements[i].firstChild);
 	}
