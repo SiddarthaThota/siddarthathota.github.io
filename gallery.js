@@ -6,14 +6,17 @@ function justifyGallery(gallery,maximgs = 2) {
 		docW = document.body.clientWidth; // width of client's page in pixels
 		initTotalW = 0;
 		for (let j = imgidx; j < Math.min(imgidx+maximgs,galleryList.length); j++){ // j also functions as imgidx
-			console.log(galleryList[j]);
 			initTotalW += galleryList[j].clientWidth;
 			initTotalW += 10; // margin	
 		}
 		resizeRate = docW/initTotalW;
+		console.log(resizeRate);
 		for (let j = imgidx; j < Math.min(imgidx+maximgs,galleryList.length); j++){ // j also functions as imgidx
-			// console.log(galleryList[j].clientWidth);
-			galleryList[j].clientWidth *= resizeRate;
+			console.log("initw: " + galleryList[j].clientWidth + " rate: " + resizeRate);
+	
+			console.log(galleryList[j].clientWidth * resizeRate);
+			galleryList[j].clientWidth = galleryList[j].clientWidth * resizeRate;
+			console.log("finalw: " + galleryList[j].clientWidth);
 		}
 		imgidx += maximgs;
 	}
@@ -25,14 +28,17 @@ function replaceChildren(parent,newchildren){
 		parent.appendChild(newchildren[i]);
 	}
 	for (var i = newchildren.length; i < parent.children.length; i++) { // remove old child elements
-		parent.removeChild(newchildren[i]);
+		// parent.removeChild(newchildren[i]);
 	}
 	return parent
 }
 
-var galleryElements = document.body.getElementsByClassName("gallery");
-for (var i = 0; i < galleryElements.length; i++) {
-	currgallery = document.body.getElementsByClassName("gallery")[i];
-	var newchildren = justifyGallery(galleryElements[i],3);
-	currgallery = replaceChildren(currgallery,newchildren);
+window.onload = function() { // wait for page to load
+	var galleryElements = document.body.getElementsByClassName("gallery");
+	for (var i = 0; i < galleryElements.length; i++) {
+		var currgallery = document.body.getElementsByClassName("gallery")[i];
+		var newchildren = justifyGallery(galleryElements[i],3);
+		document.body.getElementsByClassName("gallery")[i] = replaceChildren(currgallery,newchildren);
+}
+
 }
