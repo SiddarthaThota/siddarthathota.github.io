@@ -3,8 +3,7 @@
 }
 
 .galleryimg {
-    max-width: 100%;
-    width: 100px;
     height: auto;
+    max-width: 100%;
     margin: 5px;
 }
