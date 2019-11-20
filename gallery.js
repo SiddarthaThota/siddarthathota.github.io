@@ -6,7 +6,7 @@ function justifyGallery(gallery,maximgs = 2) {
 		docW = document.body.clientWidth; // width of client's page in pixels
 		initTotalW = 0;
 		for (let j = imgidx; j < Math.min(imgidx+maximgs,galleryList.length); j++){ // j also functions as imgidx
-			console.log(galleryList[j].clientWidth);
+			console.log(galleryList[j]);
 			initTotalW += galleryList[j].clientWidth;
 			initTotalW += 10; // margin	
 		}
@@ -15,7 +15,7 @@ function justifyGallery(gallery,maximgs = 2) {
 			// console.log(galleryList[j].clientWidth);
 			galleryList[j].clientWidth *= resizeRate;
 		}
-		imgidx += maximgs + 1;
+		imgidx += maximgs;
 	}
 	return galleryList
 }
