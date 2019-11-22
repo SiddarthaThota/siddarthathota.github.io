@@ -1,45 +1,54 @@
-function justifyGallery(gallery,maximgs = 2) {
+// Link CSS
+var head = document.getElementsByTagName('HEAD')[0]; // get HTML head element 
+var link = document.createElement('link'); // greate new link element 
+link.rel = 'stylesheet';  // set the attributes for link element
+link.type = 'text/css';
+link.href = 'gallery.css';
+head.appendChild(link);  // append link element to HTML head 
+
+function justifyGallery(gallery, maximgs = 2) {
 	console.log("justifyGallery is running");
+	var clientRow = gallery.clientWidth;
 	var galleryList = gallery.children;
-	imgidx = 0;
-	for (let i = 0; i < Math.ceil(galleryList.length/maximgs); i++) {
-		docW = document.body.clientWidth; // width of client's page in pixels
-		initTotalW = 0;
-		for (let j = imgidx; j < Math.min(imgidx+maximgs,galleryList.length); j++){ // j also functions as imgidx
-			initTotalW += galleryList[j].clientWidth;
-			console.log(galleryList[j].style.margin);
-			initTotalW += 10; // margin	or padding (will figure out how to directly add later)
+	var imgs = galleryList.length; // number of images in gallery
+	var rows = Math.ceil(imgs / maximgs) // number of rows
+	var imgC = 0; // img counter
+	for (let rowC = 0; rowC < rows; rowC++) { // row counter
+
+		var maxH = 0;
+		for (let j = 0; j < maximgs; j++) {
+			maxH = Math.max(maxH, galleryList[imgC].height);
+			imgC++;
+			if (imgC >= imgs) { break; }
 		}
-		resizeRate = docW/initTotalW;
-		console.log(resizeRate);
-		for (let j = imgidx; j < Math.min(imgidx+maximgs,galleryList.length); j++){ // j also functions as imgidx
-			console.log("initw: " + galleryList[j].clientWidth + " rate: " + resizeRate);
-	
-			console.log(galleryList[j].clientWidth * resizeRate);
-			galleryList[j].width = galleryList[j].clientWidth * resizeRate;
-			console.log("finalw: " + galleryList[j].clientWidth);
+		imgC -= maximgs; // reset imgC to count through row again
+
+		var totW = 0;
+		for (let j = 0; j < maximgs; j++) {
+			galleryList[imgC].height = maxH;
+			totW += galleryList[imgC].offsetWidth;
+			imgC++;
+			if (imgC >= imgs) { break; }
 		}
-		imgidx += maximgs;
+		imgC -= maximgs; // reset imgC to count through row again
+
+		var Wrate = clientRow / totW;
+		Wrate -= 0.05; // temporary fix to rounding errors
+		for (let j = 0; j < maximgs; j++) {
+			console.log(galleryList[imgC].offsetWidth - galleryList[imgC].clientWidth); // idk why they're the same <shrug emoji>
+
+			galleryList[imgC].width = Math.floor(galleryList[imgC].width * Wrate);
+			galleryList[imgC].height = Math.floor(galleryList[imgC].height * Wrate);
+			imgC++;
+			if (imgC >= imgs) { break; }
+		}
 	}
-	return galleryList
+	return galleryList;
 }
 
-function replaceChildren(parent,newchildren){
-	for (var i = 0; i < newchildren.length; i++) { // add new child elements
-		parent.appendChild(newchildren[i]);
-	}
-	for (var i = newchildren.length; i < parent.children.length; i++) { // remove old child elements
-		// parent.removeChild(newchildren[i]);
+function replaceChildren(parent, newchildren) {
+	for (var i = 0; i < parent.children.length; i++) {
+		parent.replaceChild(newchildren[i], parent.children[i]);
 	}
 	return parent
-}
-
-window.onload = function() { // wait for page to load
-	var galleryElements = document.body.getElementsByClassName("gallery");
-	for (var i = 0; i < galleryElements.length; i++) {
-		var currgallery = document.body.getElementsByClassName("gallery")[i];
-		var newchildren = justifyGallery(galleryElements[i],3);
-		document.body.getElementsByClassName("gallery")[i] = replaceChildren(currgallery,newchildren);
-}
-
 }
