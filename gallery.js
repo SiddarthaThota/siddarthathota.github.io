@@ -7,7 +7,8 @@ function justifyGallery(gallery,maximgs = 2) {
 		initTotalW = 0;
 		for (let j = imgidx; j < Math.min(imgidx+maximgs,galleryList.length); j++){ // j also functions as imgidx
 			initTotalW += galleryList[j].clientWidth;
-			initTotalW += 10; // margin	
+			console.log(galleryList[j].style.margin);
+			initTotalW += 10; // margin	or padding (will figure out how to directly add later)
 		}
 		resizeRate = docW/initTotalW;
 		console.log(resizeRate);
@@ -15,7 +16,7 @@ function justifyGallery(gallery,maximgs = 2) {
 			console.log("initw: " + galleryList[j].clientWidth + " rate: " + resizeRate);
 	
 			console.log(galleryList[j].clientWidth * resizeRate);
-			galleryList[j].clientWidth = galleryList[j].clientWidth * resizeRate;
+			galleryList[j].width = galleryList[j].clientWidth * resizeRate;
 			console.log("finalw: " + galleryList[j].clientWidth);
 		}
 		imgidx += maximgs;
