@@ -1,4 +1,4 @@
-// Link CSS
+// Link gallery CSS
 var head = document.getElementsByTagName('HEAD')[0]; // get HTML head element 
 var link = document.createElement('link'); // greate new link element 
 link.rel = 'stylesheet';  // set the attributes for link element
@@ -7,40 +7,39 @@ link.href = 'gallery.css';
 head.appendChild(link);  // append link element to HTML head 
 
 function justifyGallery(gallery, maximgs = 2) {
-	console.log("justifyGallery is running");
 	var clientRow = gallery.clientWidth;
 	var galleryList = gallery.children;
-	var imgs = galleryList.length; // number of images in gallery
-	var rows = Math.ceil(imgs / maximgs) // number of rows
-	var imgC = 0; // img counter
+	var chidrenN = galleryList.length; // number of children in gallery
+	var rows = Math.ceil(chidrenN / maximgs) // number of rows
+	var childC = 0; // child counter
 	for (let rowC = 0; rowC < rows; rowC++) { // row counter
-
+		
 		var maxH = 0;
 		for (let j = 0; j < maximgs; j++) {
-			maxH = Math.max(maxH, galleryList[imgC].height);
-			imgC++;
-			if (imgC >= imgs) { break; }
+			maxH = Math.max(maxH, galleryList[childC].children[0].height);
+			childC++;
+			if (childC >= chidrenN) { break; }
 		}
-		imgC -= maximgs; // reset imgC to count through row again
+		childC -= maximgs; // reset childC to count through row again
 
 		var totW = 0;
 		for (let j = 0; j < maximgs; j++) {
-			galleryList[imgC].height = maxH;
-			totW += galleryList[imgC].offsetWidth;
-			imgC++;
-			if (imgC >= imgs) { break; }
+			galleryList[childC].children[0].height = maxH;
+			totW += galleryList[childC].children[0].offsetWidth;
+			childC++;
+			if (childC >= chidrenN) { break; }
 		}
-		imgC -= maximgs; // reset imgC to count through row again
+		childC -= maximgs; // reset childC to count through row again
 
 		var Wrate = clientRow / totW;
 		Wrate -= 0.05; // temporary fix to rounding errors
 		for (let j = 0; j < maximgs; j++) {
-			console.log(galleryList[imgC].offsetWidth - galleryList[imgC].clientWidth); // idk why they're the same <shrug emoji>
+			// console.log(galleryList[childC].offsetWidth - galleryList[childC].clientWidth); // idk why they're the same <shrug emoji>
 
-			galleryList[imgC].width = Math.floor(galleryList[imgC].width * Wrate);
-			galleryList[imgC].height = Math.floor(galleryList[imgC].height * Wrate);
-			imgC++;
-			if (imgC >= imgs) { break; }
+			galleryList[childC].children[0].width = Math.floor(galleryList[childC].children[0].width * Wrate);
+			galleryList[childC].children[0].height = Math.floor(galleryList[childC].children[0].height * Wrate);
+			childC++;
+			if (childC >= chidrenN) { break; }
 		}
 	}
 	return galleryList;

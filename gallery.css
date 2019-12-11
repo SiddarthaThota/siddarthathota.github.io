@@ -1,7 +1,10 @@
 .gallery {
     width: 100%;
+    text-align: center;
 }
 
 .galleryimg {
-    margin: 10px; 
+    max-width: 100%;
+    margin: 5px;
+    border: 0;
 }
