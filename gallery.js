@@ -6,7 +6,7 @@ link.type = 'text/css';
 link.href = 'gallery.css';
 head.appendChild(link);  // append link element to HTML head 
 
-function justifyGallery(gallery, maximgs = 2) {
+function justifyGallery(gallery, maximgs = 3) {
 	var clientRow = gallery.clientWidth;
 	var galleryList = gallery.children;
 	var chidrenN = galleryList.length; // number of children in gallery
