@@ -32,9 +32,9 @@ class Tab {
 }
 
 // Define header content with this variable!
-var sidsTablist = [	new Tab("Home", "/index.html", "tab", null),
-					new Tab("Portfolio", "/portfolio.html", "tab portfolio", null),
-					new Tab("Resume", "/resume.html", "tab", null),];
+var sidsTablist = [	new Tab("Home", "index.html", "tab", null),
+					new Tab("Portfolio", "portfolio.html", "tab portfolio", null),
+					new Tab("Resume", "resume.html", "tab", null),];
 
 function appendTabs(tablist) { // return div containing elements generated from tablist that function as tabs
 	var container = document.createElement('div'); // create div "container"

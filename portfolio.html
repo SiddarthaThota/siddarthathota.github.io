@@ -15,6 +15,8 @@
 		<!-- Content goes here -->
 		<div class="gallery">
 			<a href="projects/flamethrower/index.html"><img class="galleryimg" src="projects/flamethrower/flamethrower.jpeg" alt="flamethrower"></a>
+			<a href="projects/blueketchup/index.html"><img class="galleryimg" src="projects/flamethrower/flamethrower.jpeg" alt="blueketchup"></a>
+			<a href="projects/thermiclance/index.html"><img class="galleryimg" src="projects/flamethrower/flamethrower.jpeg" alt="thermiclance"></a>
 			<a><img class="galleryimg" src="images/testimg1.jpeg" alt="deer"></a>
 			<a><img class="galleryimg" src="images/testimg2.jpeg" alt="birb"></a>
 			<a><img class="galleryimg" src="images/testimg3.jpeg" alt="fish"></a>
@@ -32,7 +34,7 @@
 					var galleryElements = document.body.getElementsByClassName("gallery"); // List of elements with the class "gallery"
 					for (var i = 0; i < galleryElements.length; i++) { // Iterate through galleryElements
 						var currgallery = galleryElements[i]; // current gallery element
-						var newchildren = justifyGallery(galleryElements[i], 3); // Return the child images of currgallery justified to fit 2 images per row
+						var newchildren = justifyGallery(galleryElements[i], 2); // Return the child images of currgallery justified to fit 2 images per row
 						galleryElements[i] = replaceChildren(currgallery, newchildren); // Put new children in parent and dispose of useless old children
 					}
 				}
