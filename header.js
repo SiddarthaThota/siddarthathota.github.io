@@ -2,7 +2,7 @@
 // It should be placed as the first child of the body in your html.
 
 // Define links under Portfolio
-var projects = ["project0.html"]
+var projects = ["flamethrower.html"]
 
 
 class Tab {
@@ -24,12 +24,6 @@ class Tab {
 		if (this.name = "Portfolio") {
 			if (sPath in projects) { tablink.id = "selectedtab"; }
 		}
-		if (this.name = "Home") {
-			if (sPath in projects) { tablink.id = "selectedtab"; }
-		}
-		if (this.name = "Resume") {
-			if (sPath in projects) { tablink.id = "selectedtab"; }
-		}
 		if (this.link == sPath) { tablink.id = "selectedtab"; } // gives the link the id #selectedtab if the user is on the same page as the link's address 
 		else { tablink.id = this.id; }
 
@@ -38,9 +32,9 @@ class Tab {
 }
 
 // Define header content with this variable!
-var sidsTablist = [	new Tab("Home", "index.html", "tab", null),
-					new Tab("Portfolio", "portfolio.html", "tab portfolio", null),
-					new Tab("Resume", "resume.html", "tab", null),];
+var sidsTablist = [	new Tab("Home", "/index.html", "tab", null),
+					new Tab("Portfolio", "/portfolio.html", "tab portfolio", null),
+					new Tab("Resume", "/resume.html", "tab", null),];
 
 function appendTabs(tablist) { // return div containing elements generated from tablist that function as tabs
 	var container = document.createElement('div'); // create div "container"
