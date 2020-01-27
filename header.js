@@ -19,7 +19,7 @@ class Tab {
 		tablink.href = this.link;
 
 		var sPage = window.location.pathname; // returns the user's current page
-		var sPath = ""//sPage.substring(sPage.lastIndexOf('/') + 1, sPage.length); // returns the individual filepath
+		var sPath = "/";//sPage.substring(sPage.lastIndexOf('/') + 1, sPage.length); // returns the individual filepath
 		tablink.className = this.className;
 		if (this.name = "Portfolio") {
 			if (sPath in projects) { tablink.id = "selectedtab"; }
